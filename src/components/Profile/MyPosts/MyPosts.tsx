@@ -1,9 +1,9 @@
 import React from "react";
 import classes from './MyPosts.module.css'
-import Post from "./Post/Post";
+import Post from 'MyPosts.module.css'
 
+const MyPosts = (props:any) => {
 
-const MyPosts = () => {
     return (
         <div className={classes.postsBlock}>
             <h3>My posts</h3>
@@ -14,13 +14,9 @@ const MyPosts = () => {
                 <button>Add post</button>
             </div>
             <div className={classes.posts}>
-                <Post message='Hi,how are you?' likeCounter={15}/>
-                <Post message="It's my first post" likeCounter={20}/>
-
+               {props.posts}
             </div>
         </div>
-
-
     )
 }
 

@@ -4,11 +4,20 @@ import classes from './Profile.module.css';
 import ProfileInfo from "./Profile/ProfileInfo/ProfileInfo";
 
 
-const Profile = () => {
+
+export  type postsType = {
+    id: number
+    message: string
+    likeCounter: number
+}
+
+
+
+const Profile = (props:any) => {
     return (
         <div>
-            <ProfileInfo />
-            <MyPosts />
+            <ProfileInfo/>
+            <MyPosts posts={props.posts}/>
         </div>
     )
 }
