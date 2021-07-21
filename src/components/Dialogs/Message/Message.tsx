@@ -7,9 +7,24 @@ type MessageTypeProps = {
 }
 
 const Message = (props: MessageTypeProps) => {
-    return <div className={s.dialogs}>{props.message}</div>
-}
 
+    // let newMessageElement: any = React.createRef();
+    //
+    // let addMessage = () => {
+    //     let text = newMessageElement.current.value;
+    //     alert(text)
+    // }
+
+    return <div>
+        <div className={s.dialogs}>{props.message}</div>
+        {/*<div>*/}
+        {/*    <textarea ref={newMessageElement}></textarea>*/}
+        {/*</div>*/}
+        {/*<div>*/}
+        {/*    <button onClick={addMessage}>Add message</button>*/}
+        {/*</div>*/}
+    </div>
+}
 
 
 export default Message;
