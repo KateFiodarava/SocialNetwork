@@ -1,4 +1,4 @@
-import React, {RefObject} from "react";
+import React, {ChangeEvent, RefObject} from "react";
 import classes from './MyPosts.module.css'
 import Post from './Post/Post'
 import {postsType} from "../../Profile";
@@ -15,13 +15,13 @@ type MyPostsPropsType = {
 const MyPosts = (props: MyPostsPropsType) => {
     let postsElements = props.posts.map((p: { message: string; likeCounter: number; }) => <Post message={p.message}
                                                                                           likeCounter={p.likeCounter}/>)
-    let newPostElement= React.createRef();
+
 
     let addPost = () => {
         props.dispatch(addPostActionCreator())
     }
-    let onPostChange = () => {
-        let text = newPostElement.current.value;
+    let onPostChange = (e:ChangeEvent<HTMLTextAreaElement>) => {
+        let text = e.currentTarget.value;
         let action= updateNewPostTextActionCreator(text);
         props.dispatch(action);
     }
@@ -29,7 +29,7 @@ const MyPosts = (props: MyPostsPropsType) => {
         <div className={classes.postsBlock}>
             <h3>My posts</h3>
             <div>
-                <textarea onChange={onPostChange} ref={newPostElement}
+                <textarea onChange={onPostChange}
                           value={props.newPostText}/>
             </div>
             <div>
