@@ -1,8 +1,8 @@
 import {postsType} from "../components/Profile";
 import {dialogsType, messagesType} from "../components/Dialogs/Dialogs";
-import profileReducer from "./profile-reducer";
-import dialogsReducer from "./dialogs-reducer";
-import sidebarReducer from "./sidebar-reducer";
+import {profileReducer} from "./profile-reducer";
+import {dialogsReducer} from "./dialogs-reducer";
+import {sidebarReducer} from "./sidebar-reducer";
 
 
 export type ActionsTypes =
@@ -11,13 +11,14 @@ export type ActionsTypes =
     | UpdateNewMessageBodyActionType
     | SendMessageActionType
 
+type SidebarType ={}
+
 export type StatePropsType = {
     profilePage: ProfilePageType
     dialogsPage: DialogsPageType
-    sidebar: {}
-
-
+    sidebar: SidebarType
 }
+
 export type AddPostActionType = {
     type: 'ADD-POST'
 }
@@ -43,15 +44,20 @@ export type DialogsPageType = {
     messages: Array<messagesType>
     newMessageBody: string
 }
+
 export  type StoreType = {
     _state: StatePropsType
     _callSubscriber: (state: StatePropsType) => void
-    subscribe: (observer: (state: StatePropsType) => void) => void
+    subscribe: (observer: () => void) => void
     getState: () => StatePropsType
     dispatch: (action: ActionsTypes) => void
-
 }
 
+export type ReduxStorePropsType = {
+    subscribe: (observe: () => void) => void
+    getState: () => StatePropsType
+    dispatch: (action: ActionsTypes) => void
+}
 
 let store: StoreType = {
     _state: {
@@ -107,20 +113,19 @@ let store: StoreType = {
     getState() {
         return this._state;
     },
-    subscribe(observer) {
-        this._callSubscriber = observer;
+    subscribe(observe) {
+        this._callSubscriber = observe;
     },
 
     dispatch(action: ActionsTypes) { //{type:'ADD-POST'}
         this._state.profilePage = profileReducer(this._state.profilePage, action);
         this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action);
         this._state.sidebar = sidebarReducer(this._state.sidebar, action);
-
         this._callSubscriber(this._state);
     }
 }
 
 
-
-
 export default store
+//@ts-ignore
+window.store = store;

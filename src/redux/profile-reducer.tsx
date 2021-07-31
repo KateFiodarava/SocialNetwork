@@ -1,9 +1,23 @@
-import {ActionsTypes, AddPostActionType, StatePropsType} from "./state";
+import {ActionsTypes, AddPostActionType, StatePropsType} from "./store";
+import {postsType} from "../components/Profile";
 
 const ADD_POST = 'ADD-POST';
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
 
-const profileReducer=(state:any,action:ActionsTypes) => {
+type statePropsType={
+    posts: Array<postsType>
+    newPostText: string
+}
+
+let initialState ={
+        posts: [
+            {id: 1, message: 'Hi,how are you?', likeCounter: 12},
+            {id: 2, message: "It's my first post", likeCounter: 11},
+        ],
+        newPostText: 'it-kamasutra.com'
+    }
+
+export const profileReducer=(state:statePropsType =initialState,action:ActionsTypes) => {
     switch (action.type) {
         case ADD_POST:
         let newPost = {
@@ -29,4 +43,3 @@ export const addPostActionCreator = (): AddPostActionType => ({type: ADD_POST})
 export const updateNewPostTextActionCreator = (text: string) =>
     ({type: UPDATE_NEW_POST_TEXT, newText: text})
 
-export default profileReducer
