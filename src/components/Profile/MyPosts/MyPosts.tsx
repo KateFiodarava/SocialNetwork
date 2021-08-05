@@ -1,29 +1,27 @@
-import React, {ChangeEvent, RefObject} from "react";
+import React, {ChangeEvent} from "react";
 import classes from './MyPosts.module.css'
 import Post from './Post/Post'
 import {postsType} from "../../Profile";
 import {addPostActionCreator, updateNewPostTextActionCreator} from "../../../redux/profile-reducer";
-import {messagesType} from "../../Dialogs/Dialogs";
+
 
 type MyPostsPropsType = {
     posts: Array<postsType>
     newPostText: string
-    dispatch: (action:any) => void
+    addPost:()=>void
+    updateNewPostText:(text:string) =>void
 }
 
 
 const MyPosts = (props: MyPostsPropsType) => {
     let postsElements = props.posts.map((p: { message: string; likeCounter: number; }) => <Post message={p.message}
-                                                                                          likeCounter={p.likeCounter}/>)
-
-
-    let addPost = () => {
-        props.dispatch(addPostActionCreator())
+                                                                                                likeCounter={p.likeCounter}/>)
+    let onAddPost = () => {
+        props.addPost();
     }
     let onPostChange = (e:ChangeEvent<HTMLTextAreaElement>) => {
         let text = e.currentTarget.value;
-        let action= updateNewPostTextActionCreator(text);
-        props.dispatch(action);
+        props.updateNewPostText(text);
     }
     return (
         <div className={classes.postsBlock}>
@@ -33,7 +31,7 @@ const MyPosts = (props: MyPostsPropsType) => {
                           value={props.newPostText}/>
             </div>
             <div>
-                <button onClick={addPost}>Add post</button>
+                <button onClick={onAddPost}>Add post</button>
             </div>
             <div className={classes.posts}>
                 {postsElements}

@@ -1,4 +1,4 @@
-import {ActionsTypes, AddPostActionType, StatePropsType} from "./store";
+import {ActionsTypes, AddPostActionType, StatePropsType, UpdateNewPostTextActionType} from "./store";
 import {postsType} from "../components/Profile";
 
 const ADD_POST = 'ADD-POST';
@@ -24,22 +24,22 @@ export const profileReducer=(state:statePropsType =initialState,action:ActionsTy
             id: 5,
             message: state.newPostText,
             likeCounter: 0
-        };
-        state.posts.push(newPost);
-        state.newPostText = '';
-        return state;
+        }
+        state.posts.push(newPost)
+        state.newPostText = ''
+        return state
 
     case UPDATE_NEW_POST_TEXT:
-        state.newPostText = action.newText;
-        return state;
+        state.newPostText = action.newText
+        return state
     default:
-        return state;
+        return state
 
 
 }
 
 }
 export const addPostActionCreator = (): AddPostActionType => ({type: ADD_POST})
-export const updateNewPostTextActionCreator = (text: string) =>
+export const updateNewPostTextActionCreator = (text: string) : UpdateNewPostTextActionType=>
     ({type: UPDATE_NEW_POST_TEXT, newText: text})
 

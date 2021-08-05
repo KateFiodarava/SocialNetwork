@@ -1,12 +1,9 @@
 import React, {ChangeEvent} from 'react';
 import s from './Dialogs.module.css'
-import Message from "./Message/Message";
-import DialogItem from "./DialogItem/DialogItem";
-import {
-    sendMessageCreator,
-    updateNewMessageBodyCreator
-} from "../../redux/dialogs-reducer";
 import {ReduxStorePropsType} from "../../redux/store";
+import DialogItem from "./DialogItem/DialogItem";
+import Message from "./Message/Message";
+
 
 export  type dialogsType = {
     name: string
@@ -19,36 +16,40 @@ export type messagesType = {
 
 }
 type DialogsPropsType = {
-    dialogs: Array<dialogsType>
-    messages: Array<messagesType>
-    newMessageBody: string
-    store: ReduxStorePropsType
+    // dialogs: Array<dialogsType>
+    // messages: Array<messagesType>
+    // newMessageBody: string
+    // store: ReduxStorePropsType
+    sendMessage:()=>void
+    dialogsPage:any
+    updateNewMessageBody:(body:string)=>void
 }
 
 const Dialogs = (props: DialogsPropsType) => {
+    let state=props.dialogsPage;
 
-    let dialogsElement = props.dialogs
+    let dialogsElement = state.dialogs
         .map((d: { name: string; id: number; src: string }) => <DialogItem name={d.name} id={d.id} src={d.src}/>);
 
-    let messagesElements = props.messages
+    let messagesElements = state.messages
         .map((m: { message: string; id: number }) => <Message message={m.message} id={m.id}/>);
 
-    let newMessageBody = props.newMessageBody;
+    let newMessageBody = state.newMessageBody;
 
     let onSendMessageClick = () => {
-        props.store.dispatch(sendMessageCreator())
+        props.sendMessage()
+        // props.store.dispatch(sendMessageCreator())
     }
     let onNewMessageChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
         let body = e.target.value;
-        props.store.dispatch(updateNewMessageBodyCreator(body))
+        props.updateNewMessageBody(body);
+        // props.store.dispatch(updateNewMessageBodyCreator(body))
     }
-
 
     return (
         <div className={s.dialogs}>
             <div className={s.dialogsItems}>
                 {dialogsElement}
-
             </div>
             <div className={s.dialogs}>
                 <div className={s.messages}>

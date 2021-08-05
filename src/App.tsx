@@ -10,6 +10,7 @@ import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
 import {ReduxStorePropsType} from "./redux/store";
 import store from "./redux/redux-store";
+import DialogsContainer from "./components/Dialogs/DialogsContainer";
 
 
 type AppPropsType = {
@@ -26,14 +27,9 @@ function App(props: AppPropsType) {
                 <Navbar/>
 
                 <div className={'app-wrapper-content'}>
-                    <Route path='/dialogs' render={() => <Dialogs messages={props.store.getState().dialogsPage.messages}
-                                                                  dialogs={props.store.getState().dialogsPage.dialogs}
-                                                                  newMessageBody={props.store.getState().dialogsPage.newMessageBody}
-                                                                  store={store}
+                    <Route path='/dialogs' render={() => <DialogsContainer store={props.store}
                     />}/>
-                    <Route path='/profile' render={() => <Profile posts={props.store.getState().profilePage.posts}
-                                                                  dispatch={props.store.dispatch.bind(props.store)}
-                                                                  newPostText={props.store.getState().profilePage.newPostText}/>}/>
+                    <Route path='/profile' render={() => <Profile store={props.store}/>}/>
                     <Route path='/news' render={() => <News/>}/>
                     <Route path='/music' render={() => <Music/>}/>
                     <Route path='/settings' render={() => <Settings/>}/>
@@ -44,3 +40,6 @@ function App(props: AppPropsType) {
 }
 
 export default App;
+// messages={props.store.getState().dialogsPage.messages}
+// dialogs={props.store.getState().dialogsPage.dialogs}
+// newMessageBody={props.store.getState().dialogsPage.newMessageBody}
