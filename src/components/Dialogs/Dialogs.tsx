@@ -1,6 +1,6 @@
 import React, {ChangeEvent} from 'react';
 import s from './Dialogs.module.css'
-import {ReduxStorePropsType} from "../../redux/store";
+import {DialogsPageType, ReduxStorePropsType} from "../../redux/store";
 import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
 
@@ -16,12 +16,8 @@ export type messagesType = {
 
 }
 type DialogsPropsType = {
-    // dialogs: Array<dialogsType>
-    // messages: Array<messagesType>
-    // newMessageBody: string
-    // store: ReduxStorePropsType
     sendMessage:()=>void
-    dialogsPage:any
+    dialogsPage:DialogsPageType
     updateNewMessageBody:(body:string)=>void
 }
 

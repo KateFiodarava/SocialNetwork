@@ -11,22 +11,12 @@ export  type postsType = {
     likeCounter: number
 }
 
-type ProfileTypeProps={
-   // posts: Array<postsType>
-   //  newPostText:string
-   //  dispatch: (action:ActionsTypes)=>void
-    store: ReduxStorePropsType
-}
 
-const Profile = (props:ProfileTypeProps) => {
+const Profile = () => {
     return (
         <div>
             <ProfileInfo/>
-            <MyPostsContainer store={props.store}
-                              // posts={props.posts}
-                              // dispatch={props.dispatch}
-                              // newPostText={props.newPostText}
-            />
+            <MyPostsContainer/>
         </div>
     )
 }

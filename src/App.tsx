@@ -1,7 +1,6 @@
 import React from 'react';
 import {BrowserRouter, Route} from 'react-router-dom';
 import './App.css';
-import Dialogs from './components/Dialogs/Dialogs';
 import Header from "./components/Header/Header";
 import Navbar from "./components/Navbar/Navbar";
 import Profile from "./components/Profile";
@@ -13,11 +12,11 @@ import store from "./redux/redux-store";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
 
 
-type AppPropsType = {
-    store: ReduxStorePropsType
-}
+// type AppPropsType = {
+//     store: ReduxStorePropsType
+// }
 
-function App(props: AppPropsType) {
+function App() {
 
     return (
         <BrowserRouter>
@@ -27,9 +26,8 @@ function App(props: AppPropsType) {
                 <Navbar/>
 
                 <div className={'app-wrapper-content'}>
-                    <Route path='/dialogs' render={() => <DialogsContainer store={props.store}
-                    />}/>
-                    <Route path='/profile' render={() => <Profile store={props.store}/>}/>
+                    <Route path='/dialogs' render={() => <DialogsContainer/>}/>
+                    <Route path='/profile' render={() => <Profile/>}/>
                     <Route path='/news' render={() => <News/>}/>
                     <Route path='/music' render={() => <Music/>}/>
                     <Route path='/settings' render={() => <Settings/>}/>
