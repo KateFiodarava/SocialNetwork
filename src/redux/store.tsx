@@ -10,8 +10,11 @@ export type ActionsTypes =
     | UpdateNewPostTextActionType
     | UpdateNewMessageBodyActionType
     | SendMessageActionType
+    | FollowActionType
+    | UnfollowActionType
+    | UsersActionType
 
-type SidebarType ={}
+type SidebarType = {}
 
 export type StatePropsType = {
     profilePage: ProfilePageType
@@ -25,6 +28,19 @@ export type AddPostActionType = {
 export type UpdateNewPostTextActionType = {
     type: 'UPDATE-NEW-POST-TEXT'
     newText: string
+}
+export type UnfollowActionType = {
+    type: 'UNFOLLOW'
+    userId: number
+}
+
+export type FollowActionType = {
+    type: 'FOLLOW'
+    userId: number
+}
+export type UsersActionType = {
+    type: 'SET_USERS'
+    userId: number
 }
 export type UpdateNewMessageBodyActionType = {
     type: 'UPDATE-NEW-MESSAGE-BODY'
