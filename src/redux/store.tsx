@@ -40,7 +40,7 @@ export type FollowActionType = {
 }
 export type UsersActionType = {
     type: 'SET_USERS'
-    userId: number
+    users: any
 }
 export type UpdateNewMessageBodyActionType = {
     type: 'UPDATE-NEW-MESSAGE-BODY'

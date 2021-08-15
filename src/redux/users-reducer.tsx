@@ -8,50 +8,28 @@ const FOLLOW = 'FOLLOW';
 const UNFOLLOW = 'UNFOLLOW';
 const SET_USERS = "SET_USERS";
 
-type locationType = {
+export type locationType = {
     city: string
     country: string
 }
-type initialStateType = {
+export type initialStateType = {
     id: number
+    photoUrl: string
     followed: boolean
     fullName: string
     status: string
     location: locationType
 
 }
-type statePropsType = {
+export type statePropsType = {
     users: initialStateType[]
 }
 
-let initialState = {
-    users: [
-        {
-            id: 1,
-            followed: false,
-            fullName: 'Vadzim',
-            status: "I am a boss",
-            location: {city: "Minsk", country: "Belarus"}
-        },
-        {
-            id: 2,
-            followed: true,
-            fullName: "Sascha",
-            status: "I am a boss too",
-            location: {city: "Kiev", country: "Ukraine"}
-        },
-        {
-            id: 3,
-            followed: true,
-            fullName: "Katya",
-            status: "I am a boss too",
-            location: {city: "Moskov", country: "Russia"}
-        }
-    ],
-    newPostText: 'it-kamasutra.com'
+const initialState = {
+users:[]
 }
 
-export const usersReducer = (state: statePropsType = initialState, action: ActionsTypes) => {
+const usersReducer = (state: statePropsType = initialState, action: ActionsTypes) => {
     switch (action.type) {
         case FOLLOW:
             return {
@@ -60,6 +38,7 @@ export const usersReducer = (state: statePropsType = initialState, action: Actio
                     if (u.id === action.userId) {
                         return {...u, followed: true}
                     }
+                    return u
                 })
             }
         case UNFOLLOW:
@@ -69,9 +48,12 @@ export const usersReducer = (state: statePropsType = initialState, action: Actio
                     if (u.id === action.userId) {
                         return {...u, followed: false}
                     }
+                    return u
                 })
             }
-
+        case SET_USERS: {
+            return {...state, users: [...state.users, ...action.users]}
+        }
 
         default:
             return state
@@ -79,5 +61,6 @@ export const usersReducer = (state: statePropsType = initialState, action: Actio
 }
 export const followAC = (userId: number): FollowActionType => ({type: FOLLOW, userId})
 export const unFollowAC = (userId: number): UnfollowActionType => ({type: UNFOLLOW, userId})
-export const setUsersAC = (userId: number): UsersActionType => ({type: SET_USERS, userId})
+export const setUsersAC = (users: any): UsersActionType => ({type: SET_USERS, users})
 
+export default usersReducer
