@@ -5,17 +5,18 @@ import {dialogsReducer} from "./dialogs-reducer";
 import usersReducer from "./users-reducer";
 
 
+export type AppPropsType = ReturnType<typeof rootReducer>
 
 
-
-let reducers = combineReducers({
+const rootReducer = combineReducers({
     profilePage: profileReducer,
     dialogsPage: dialogsReducer,
     sidebar: sidebarReducer,
     usersPage: usersReducer
 
 });
-let store = createStore(reducers);
+
+const store = createStore(rootReducer);
 //@ts-ignore
 window.store=store;
 

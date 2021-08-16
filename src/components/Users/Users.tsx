@@ -2,7 +2,6 @@ import React from "react";
 import {initialStateType, setUsersAC} from "../../redux/users-reducer";
 import styles from './users.module.css'
 
-
 type UsersType = {
     users: initialStateType[]
     follow: (userId: number) => void
@@ -46,8 +45,12 @@ const Users = (props: UsersType) => {
                     <div>
                         {
                             u.followed
-                            ? <button onClick={ () => props.unfollow(u.id)}>Unfollow</button>
-                            : <button onClick={() => props.follow(u.id)}>Follow</button>
+                            ? <button onClick={ () => props.unfollow(u.id)}>
+                                  Unfollow
+                            </button>
+                            : <button onClick={() => props.follow(u.id)}>
+                                  Follow
+                            </button>
                         }
                     </div>
                 </span>

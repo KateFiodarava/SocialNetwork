@@ -7,14 +7,12 @@ type MessageTypeProps = {
 }
 
 const Message = (props: MessageTypeProps) => {
-
     // let newMessageElement: any = React.createRef();
     //
     // let addMessage = () => {
     //     let text = newMessageElement.current.value;
     //     alert(text)
     // }
-
     return <div>
         <div className={s.dialogs}>{props.message}</div>
         {/*<div>*/}
@@ -25,6 +23,5 @@ const Message = (props: MessageTypeProps) => {
         {/*</div>*/}
     </div>
 }
-
 
 export default Message;

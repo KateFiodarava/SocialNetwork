@@ -4,7 +4,6 @@ import {DialogsPageType, ReduxStorePropsType} from "../../redux/store";
 import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
 
-
 export  type dialogsType = {
     name: string
     id: number
@@ -13,7 +12,6 @@ export  type dialogsType = {
 export type messagesType = {
     message: string
     id: number
-
 }
 type DialogsPropsType = {
     sendMessage:()=>void
@@ -25,10 +23,12 @@ const Dialogs = (props: DialogsPropsType) => {
     let state=props.dialogsPage;
 
     let dialogsElement = state.dialogs
-        .map((d: { name: string; id: number; src: string }) => <DialogItem name={d.name} id={d.id} src={d.src}/>);
+        .map((d: { name: string; id: number; src: string }) => <DialogItem
+          name={d.name} id={d.id} src={d.src}/>);
 
     let messagesElements = state.messages
-        .map((m: { message: string; id: number }) => <Message message={m.message} id={m.id}/>);
+        .map((m: { message: string; id: number }) => <Message
+          message={m.message} id={m.id}/>);
 
     let newMessageBody = state.newMessageBody;
 

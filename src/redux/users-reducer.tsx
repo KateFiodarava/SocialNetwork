@@ -25,8 +25,8 @@ export type statePropsType = {
     users: initialStateType[]
 }
 
-const initialState = {
-users:[]
+const initialState: statePropsType= {
+    users: []
 }
 
 const usersReducer = (state: statePropsType = initialState, action: ActionsTypes) => {
@@ -61,6 +61,6 @@ const usersReducer = (state: statePropsType = initialState, action: ActionsTypes
 }
 export const followAC = (userId: number): FollowActionType => ({type: FOLLOW, userId})
 export const unFollowAC = (userId: number): UnfollowActionType => ({type: UNFOLLOW, userId})
-export const setUsersAC = (users: any): UsersActionType => ({type: SET_USERS, users})
+export const setUsersAC = (users: initialStateType[]): UsersActionType => ({type: SET_USERS, users})
 
 export default usersReducer
