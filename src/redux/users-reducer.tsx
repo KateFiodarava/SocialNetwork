@@ -14,9 +14,9 @@ export type locationType = {
 }
 export type initialStateType = {
     id: number
-    photoUrl: string
+    photos: {small:string,lange:string}
     followed: boolean
-    fullName: string
+    name: string
     status: string
     location: locationType
 
