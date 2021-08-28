@@ -15,6 +15,7 @@ export type ActionsTypes =
   | UsersActionType
   | CurrentPageType
   | totalCountType
+  | toggleIsFetchingType
 
 type SidebarType = {}
 
@@ -23,7 +24,10 @@ export type StatePropsType = {
   dialogsPage: DialogsPageType
   sidebar: SidebarType
 }
-
+export type toggleIsFetchingType ={
+  type: 'TOGGLE_IS_FETCHING',
+  isFetching:boolean
+}
 export type AddPostActionType = {
   type: 'ADD-POST'
 }

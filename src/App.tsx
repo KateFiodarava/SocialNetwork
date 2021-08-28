@@ -7,10 +7,8 @@ import Profile from "./components/Profile";
 import News from "./components/News/News";
 import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
-import {ReduxStorePropsType} from "./redux/store";
-import store from "./redux/redux-store";
+
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
-import Users from "./components/Users/Users";
 import UsersContainer from "./components/Users/UsersContainer";
 
 
