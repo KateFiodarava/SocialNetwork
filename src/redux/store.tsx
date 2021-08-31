@@ -1,6 +1,6 @@
 import {postsType} from "../components/Profile";
 import {dialogsType, messagesType} from "../components/Dialogs/Dialogs";
-import {profileReducer} from "./profile-reducer";
+import {profileReducer, setUserProfile} from "./profile-reducer";
 import {dialogsReducer} from "./dialogs-reducer";
 import {sidebarReducer} from "./sidebar-reducer";
 
@@ -16,6 +16,7 @@ export type ActionsTypes =
   | CurrentPageType
   | totalCountType
   | toggleIsFetchingType
+  | setUserProfileType
 
 type SidebarType = {}
 
@@ -24,9 +25,9 @@ export type StatePropsType = {
   dialogsPage: DialogsPageType
   sidebar: SidebarType
 }
-export type toggleIsFetchingType ={
+export type toggleIsFetchingType = {
   type: 'TOGGLE_IS_FETCHING',
-  isFetching:boolean
+  isFetching: boolean
 }
 export type AddPostActionType = {
   type: 'ADD-POST'
@@ -56,6 +57,11 @@ export type totalCountType = {
 export type CurrentPageType = {
   type: 'SET_CURRENT_PAGE'
   currentPage: number
+}
+
+export type setUserProfileType = {
+  type: 'SET_USER_PROFILE'
+  profile: ProfilePageType
 }
 export type UpdateNewMessageBodyActionType = {
   type: 'UPDATE-NEW-MESSAGE-BODY'

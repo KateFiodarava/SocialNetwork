@@ -1,8 +1,15 @@
 import React from "react";
 import s from "./ProfileInfo.module.css"
+import {ProfilePropsType} from "../../Profile";
+import {Preloader} from "../../common/Preloader/Preloader";
 
-
-const ProfileInfo = () => {
+export type ProfileInfoPropsType ={
+  profile:any
+}
+const ProfileInfo = (props:ProfileInfoPropsType) => {
+  if (!props.profile) {
+    return  <Preloader />
+  }
     return (
         <div>
             <div>
@@ -10,6 +17,12 @@ const ProfileInfo = () => {
                 'tbn:ANd9GcREbjs74kHNQ6EbVpQPwqe6hfqhPxpFu3whAg&usqp=CAU'}/>
             </div>
             <div className={s.describeBlock}>
+              <img src={props.profile.photos.large}/>
+              <div>{props.profile.aboutMe}</div>
+              <div>{props.profile.contacts.facebook}</div>
+              <div>{props.profile.lookingForAJob === true ? 'ghbdtn': false} </div>
+              <div>{props.profile.lookingForAJobDescription}</div>
+              <div>{props.profile.fullName}</div>
                 ava+description
             </div>
         </div>

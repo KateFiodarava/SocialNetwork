@@ -11,11 +11,13 @@ export  type postsType = {
     likeCounter: number
 }
 
-
-const Profile = () => {
+export type ProfilePropsType ={
+  profile:null
+}
+const Profile = (props:ProfilePropsType) => {
     return (
         <div>
-            <ProfileInfo/>
+            <ProfileInfo profile={props.profile}/>
             <MyPostsContainer/>
         </div>
     )

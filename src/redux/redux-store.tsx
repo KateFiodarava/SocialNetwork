@@ -5,7 +5,7 @@ import {dialogsReducer} from "./dialogs-reducer";
 import usersReducer from "./users-reducer";
 
 
-export type AppPropsType = ReturnType<typeof rootReducer>
+export type  AppPropsType = ReturnType<typeof rootReducer>
 
 
 const rootReducer = combineReducers({
