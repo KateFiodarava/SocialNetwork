@@ -10,6 +10,8 @@ import Settings from "./components/Settings/Settings";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
 import UsersContainer from "./components/Users/UsersContainer";
 import ProfileContainer from "./components/ProfileContainer";
+import HeaderContainer from "./components/Header/HeaderContainer";
+
 
 
 // type AppPropsType = {
@@ -22,7 +24,7 @@ function App() {
         <BrowserRouter>
             <div className='app-wrapper'>
 
-                <Header/>
+                <HeaderContainer/>
                 <Navbar/>
 
                 <div className={'app-wrapper-content'}>

@@ -14,6 +14,7 @@ const SET_USER_PROFILE='SET_USER_PROFILE';
 type statePropsType = {
     posts: Array<postsType>
     newPostText: string
+    profile:null
 }
 
 let initialState = {
@@ -55,7 +56,7 @@ export const profileReducer = (state: statePropsType = initialState, action: Act
     }
 }
 export const addPostActionCreator = (): AddPostActionType => ({type: ADD_POST})
-export const setUserProfile = (profile:ProfilePageType): setUserProfileType => ({type: SET_USER_PROFILE,profile})
+export const setUserProfile = (profile:null): setUserProfileType => ({type: SET_USER_PROFILE,profile})
 
 export const updateNewPostTextActionCreator = (text: string): UpdateNewPostTextActionType =>
     ({type: UPDATE_NEW_POST_TEXT, newText: text})

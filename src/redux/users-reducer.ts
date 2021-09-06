@@ -3,6 +3,7 @@ import {
   FollowActionType, toggleIsFetchingType, totalCountType,
   UnfollowActionType, UsersActionType,
 } from "./store";
+import {ProfilePropsType} from "../components/Profile";
 
 const FOLLOW = 'FOLLOW';
 const UNFOLLOW = 'UNFOLLOW';
@@ -39,7 +40,7 @@ const initialState: statePropsType = {
   totalUsersCount: 20,
   currentPage: 1,
   totalCount: 0,
-  isFetching: true
+  isFetching: true,
 }
 
 const usersReducer = (state: statePropsType = initialState, action: ActionsTypes) => {

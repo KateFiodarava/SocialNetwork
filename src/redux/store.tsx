@@ -17,6 +17,7 @@ export type ActionsTypes =
   | totalCountType
   | toggleIsFetchingType
   | setUserProfileType
+  | authActionType
 
 type SidebarType = {}
 
@@ -61,7 +62,7 @@ export type CurrentPageType = {
 
 export type setUserProfileType = {
   type: 'SET_USER_PROFILE'
-  profile: ProfilePageType
+  profile: null
 }
 export type UpdateNewMessageBodyActionType = {
   type: 'UPDATE-NEW-MESSAGE-BODY'
@@ -71,9 +72,18 @@ export type SendMessageActionType = {
   type: 'SEND-MESSAGE'
   newMessageBody: string
 }
+export type authActionType = {
+  type: 'SET_USER_DATA'
+  data: {
+    userId: null
+    email: null
+    login: null
+  }
+}
 export type ProfilePageType = {
   posts: Array<postsType>
   newPostText: string
+  profile:null
 
 }
 export type DialogsPageType = {
@@ -103,7 +113,8 @@ let store: StoreType = {
         {id: 1, message: 'Hi,how are you?', likeCounter: 12},
         {id: 2, message: "It's my first post", likeCounter: 11},
       ],
-      newPostText: 'it-kamasutra.com'
+      newPostText: 'it-kamasutra.com',
+      profile:null
     },
     dialogsPage: {
       dialogs: [
