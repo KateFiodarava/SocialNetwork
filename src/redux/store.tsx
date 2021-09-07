@@ -18,6 +18,7 @@ export type ActionsTypes =
   | toggleIsFetchingType
   | setUserProfileType
   | authActionType
+  | ToggleIsFollowingInProgressType
 
 type SidebarType = {}
 
@@ -59,6 +60,11 @@ export type CurrentPageType = {
   type: 'SET_CURRENT_PAGE'
   currentPage: number
 }
+export type ToggleIsFollowingInProgressType = {
+  type: 'TOGGLE_IS_FOLLOWING_PROGRESS'
+  isFetching:boolean
+  userId:number
+}
 
 export type setUserProfileType = {
   type: 'SET_USER_PROFILE'
@@ -83,7 +89,7 @@ export type authActionType = {
 export type ProfilePageType = {
   posts: Array<postsType>
   newPostText: string
-  profile:null
+  profile: null
 
 }
 export type DialogsPageType = {
@@ -114,7 +120,7 @@ let store: StoreType = {
         {id: 2, message: "It's my first post", likeCounter: 11},
       ],
       newPostText: 'it-kamasutra.com',
-      profile:null
+      profile: null
     },
     dialogsPage: {
       dialogs: [
