@@ -8,6 +8,9 @@ import {
   UsersActionType,
 } from "./store";
 import {ProfilePropsType} from "../components/Profile";
+import {userAPI} from "../api/api";
+import {Dispatch} from "redux";
+import {ThunkAction} from "redux-thunk";
 
 const FOLLOW = 'FOLLOW';
 const UNFOLLOW = 'UNFOLLOW';
@@ -97,11 +100,11 @@ const usersReducer = (state: statePropsType = initialState, action: ActionsTypes
       return state
   }
 }
-export const follow = (userId: number): FollowActionType => ({
+export const followSuccess = (userId: number): FollowActionType => ({
   type: FOLLOW,
   userId
 })
-export const unFollow = (userId: number): UnfollowActionType => ({
+export const unFollowSuccess = (userId: number): UnfollowActionType => ({
   type: UNFOLLOW,
   userId
 })
@@ -126,5 +129,43 @@ export const toggleFollowingInProgress = (isFetching: boolean, userId: number): 
   isFetching,
   userId
 })
+export const getUsers = (currentPage: number, pageSize: number) => {
 
+  return (dispatch: Dispatch<ActionsTypes>) => {
+
+    dispatch(toggleIsFetching(true));
+
+    userAPI.getUsers(currentPage, pageSize).then(data => {
+      dispatch(toggleIsFetching(false));
+      dispatch(setUsers(data.items))
+      dispatch(setTotalUsersCount(data.totalCount))
+    })
+  }
+}
+
+export const follow = (userId: number) => {
+  return (dispatch: Dispatch<ActionsTypes>) => {
+    dispatch(toggleFollowingInProgress(true, userId));
+    userAPI.followed(userId)
+      .then(data => {
+        if (data.resultCode == 0) {
+          dispatch(followSuccess(userId));
+        }
+        dispatch(toggleFollowingInProgress(false, userId))
+      })
+  }
+}
+
+export const unFollow = (userId: number) => {
+  return (dispatch: Dispatch<ActionsTypes>) => {
+    dispatch(toggleFollowingInProgress(true, userId));
+    userAPI.unfollowed(userId)
+      .then(data => {
+        if (data.resultCode == 0) {
+          dispatch(unFollowSuccess(userId));
+        }
+        dispatch(toggleFollowingInProgress(false, userId))
+      })
+  }
+}
 export default usersReducer
