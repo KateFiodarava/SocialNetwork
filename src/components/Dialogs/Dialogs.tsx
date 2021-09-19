@@ -36,14 +36,11 @@ const Dialogs = (props: DialogsPropsType) => {
 
     let onSendMessageClick = () => {
         props.sendMessage()
-        // props.store.dispatch(sendMessageCreator())
     }
     let onNewMessageChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
         let body = e.target.value;
         props.updateNewMessageBody(body);
-        // props.store.dispatch(updateNewMessageBodyCreator(body))
     }
-if (!props.isAuth) return <Redirect to={'/login'}/>
 
 
     return (
