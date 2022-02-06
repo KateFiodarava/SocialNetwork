@@ -2,7 +2,11 @@ import React from 'react';
 import Profile from "./Profile";
 import axios from "axios";
 import {connect} from "react-redux";
-import {getUserProfile, setUserProfile} from "../redux/profile-reducer";
+import {
+  getStatus,
+  getUserProfile,
+  setUserProfile, updateStatus
+} from "../redux/profile-reducer";
 import {Redirect, withRouter} from "react-router-dom";
 import {StatePropsType} from "../redux/store";
 import {statePropsType} from "../redux/users-reducer";
@@ -20,6 +24,7 @@ export  type postsType = {
 
 type mapStateType = {
   profile: null
+  status:string
 }
 
 class ProfileContainer extends React.Component<any> {
@@ -29,13 +34,16 @@ class ProfileContainer extends React.Component<any> {
     if (!userId) {
       userId = 2
     }
-    this.props.getUserProfile(userId)
+    this.props.getUserProfile(+userId)
+    this.props.getStatus(+userId)
   }
 
   render() {
     return (
       <div>
-      <Profile profile={this.props.profile}/>
+      <Profile profile={this.props.profile}
+               status={this.props.status}
+               updateStatus={this.props.updateStatus}/>
       </div>
     )
   }
@@ -46,11 +54,13 @@ const AuthRedirectComponent = withAuthRedirect(ProfileContainer);
 
 let mapStateToProps = (state: AppPropsType): mapStateType => ({
   profile: state.profilePage.profile,
+  status: state.profilePage.status
 })
 
 // let WithUrlDataContainerComponent = withRouter(AuthRedirectComponent);
+//let getUserStatus;
 export default compose<React.ComponentType> (
-  connect(mapStateToProps, {getUserProfile}),
+  connect(mapStateToProps, {getUserProfile, getStatus, updateStatus}),
   withRouter,
   // withAuthRedirect
 )(ProfileContainer);

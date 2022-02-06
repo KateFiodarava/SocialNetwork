@@ -3,11 +3,14 @@ import s from "./ProfileInfo.module.css"
 import {ProfilePropsType} from "../../Profile";
 import {Preloader} from "../../common/Preloader/Preloader";
 import ProfileStatus from "./ProfileStatus";
+import {updateStatus} from "../../../redux/profile-reducer";
 
 
 
 export type ProfileInfoPropsType ={
   profile:any
+  status: string
+  updateStatus: typeof updateStatus
 }
 const ProfileInfo = (props:ProfileInfoPropsType) => {
   if (!props.profile) {
@@ -26,7 +29,8 @@ const ProfileInfo = (props:ProfileInfoPropsType) => {
               <div>{props.profile.lookingForAJob === true ? 'ghbdtn': false} </div>
               <div>{props.profile.lookingForAJobDescription}</div>
               <div>{props.profile.fullName}</div>
-               <ProfileStatus status={"hello"}/>
+               <ProfileStatus status={props.status}
+                              updateStatus={props.updateStatus}/>
             </div>
         </div>
 
