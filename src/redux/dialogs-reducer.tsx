@@ -1,13 +1,12 @@
 import {ActionsTypes, SendMessageActionType, UpdateNewMessageBodyActionType} from "./store";
 import {dialogsType, messagesType} from "../components/Dialogs/Dialogs";
 
-const UPDATE_NEW_MESSAGE_BODY = 'UPDATE-NEW-MESSAGE-BODY';
+// const UPDATE_NEW_MESSAGE_BODY = 'UPDATE-NEW-MESSAGE-BODY';
 const SEND_MESSAGE = 'SEND-MESSAGE';
 
 type StateDialogsPropsType = {
     dialogs: Array<dialogsType>
     messages: Array<messagesType>
-    newMessageBody: string
 }
 
 const initialState = {
@@ -43,30 +42,28 @@ const initialState = {
         {id: 2, message: 'Yo'},
         {id: 3, message: 'Hello'},
         {id: 4, message: 'How are you?'}
-    ],
-    newMessageBody: ''
+    ]
 }
 
 export const dialogsReducer = (state: StateDialogsPropsType = initialState, action: ActionsTypes) => {
      switch (action.type) {
-        case UPDATE_NEW_MESSAGE_BODY:
-            return {
-                ...state,
-                newMessageBody: action.body
-            };
+        // case UPDATE_NEW_MESSAGE_BODY:
+        //     return {
+        //         ...state,
+        //         newMessageBody: action.body
+        //     };
 
         case SEND_MESSAGE:
-            let body = state.newMessageBody;
+            let body = action.newMessageBody;
             return {
                 ...state,
-                newMessageBody: "",
                 messages: [...state.messages, {id: 6, message: body}]
             }
                  default:
             return state;
     }
 }
-export const sendMessageCreator = (): SendMessageActionType => ({type: SEND_MESSAGE}) as SendMessageActionType
-export const updateNewMessageBodyCreator = (body: string): UpdateNewMessageBodyActionType =>
-    ({type: UPDATE_NEW_MESSAGE_BODY, body: body})
+export const sendMessageCreator = (newMessageBody:string): SendMessageActionType => ({type: SEND_MESSAGE,newMessageBody}) as SendMessageActionType
+// export const updateNewMessageBodyCreator = (body: string): UpdateNewMessageBodyActionType =>
+//     ({type: UPDATE_NEW_MESSAGE_BODY, body: body})
 

@@ -36,7 +36,7 @@ export const profileReducer = (state: statePropsType = initialState, action: Act
     case ADD_POST: {
       let newPost = {
         id: 5,
-        message: state.newPostText,
+        message: action.newPostText,
         likeCounter: 0
       }
       return {
@@ -65,7 +65,7 @@ export const profileReducer = (state: statePropsType = initialState, action: Act
       return state
   }
 }
-export const addPostActionCreator = (): AddPostActionType => ({type: ADD_POST})
+export const addPostActionCreator = (newPostText:string): AddPostActionType => ({type: ADD_POST,newPostText})
 export const setUserProfile = (profile: null): setUserProfileType => ({
   type: SET_USER_PROFILE,
   profile

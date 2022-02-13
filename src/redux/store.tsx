@@ -34,6 +34,7 @@ export type toggleIsFetchingType = {
 }
 export type AddPostActionType = {
   type: 'ADD-POST'
+  newPostText:string
 }
 export type UpdateNewPostTextActionType = {
   type: 'UPDATE-NEW-POST-TEXT'

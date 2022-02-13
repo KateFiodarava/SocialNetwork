@@ -4,14 +4,14 @@ import {updateStatus} from "../../../redux/profile-reducer";
 
 export type ProfileStatusType = {
   status: string
-  updateStatus:typeof updateStatus
+  updateStatus: typeof updateStatus
 
 }
 
 class ProfileStatus extends React.Component <ProfileStatusType> {
   state = {
     editMode: false,
-    status:this.props.status
+    status: this.props.status
 
   }
 
@@ -25,13 +25,23 @@ class ProfileStatus extends React.Component <ProfileStatusType> {
     this.setState({
       editMode: false
     })
-      this.props.updateStatus(this.state.status)
+    this.props.updateStatus(this.state.status)
   }
-onStatusChange= (e:ChangeEvent<HTMLInputElement>) =>{
-    this.setState( {
+  onStatusChange = (e: ChangeEvent<HTMLInputElement>) => {
+    this.setState({
       status: e.currentTarget.value
     })
-}
+  }
+
+  componentDidUpdate(prevProps:Readonly<ProfileStatusType>, prevState:Readonly<any>) {
+    if (prevProps.status !== this.props.status) {
+      this.setState({
+        status: this.props.status
+      })
+    }
+    console.log("componentDidUpdate")
+  }
+
   render() {
     return (
       <div>
@@ -43,7 +53,8 @@ onStatusChange= (e:ChangeEvent<HTMLInputElement>) =>{
         }
         {this.state.editMode &&
         <div>
-            <input onChange={this.onStatusChange} autoFocus={true} onBlur={this.deactivateEditMode}
+            <input onChange={this.onStatusChange} autoFocus={true}
+                   onBlur={this.deactivateEditMode}
                    value={this.state.status}/>
         </div>
         }
