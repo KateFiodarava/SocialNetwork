@@ -82,10 +82,11 @@ export type SendMessageActionType = {
 }
 export type authActionType = {
   type: 'SET_USER_DATA'
-  data: {
+  payload: {
     userId: null
     email: null
     login: null
+    isAuth:boolean
   }
 }
 export type ProfilePageType = {
