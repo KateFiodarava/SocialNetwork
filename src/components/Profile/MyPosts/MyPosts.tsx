@@ -48,6 +48,9 @@ const MyPosts = (props: MyPostsPropsType) => {
             {/*</div>*/}
 
          < MyPostReduxForm onSubmit={onSubmit}/>
+          <div className={classes.posts}>
+            {postsElements}
+          </div>
         </div>
     )
 }

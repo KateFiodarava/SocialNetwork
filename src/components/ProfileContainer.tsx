@@ -25,6 +25,8 @@ export  type postsType = {
 type mapStateType = {
   profile: null
   status:string
+  authorizedUserId: string
+  isAuth:string
 }
 
 class ProfileContainer extends React.Component<any> {
@@ -32,7 +34,7 @@ class ProfileContainer extends React.Component<any> {
   componentDidMount() {
     let userId = this.props.match.params.userId;
     if (!userId) {
-      userId = 2
+      userId =this.props.authorizedUserId
     }
     this.props.getUserProfile(+userId)
     this.props.getStatus(+userId)
@@ -54,7 +56,9 @@ const AuthRedirectComponent = withAuthRedirect(ProfileContainer);
 
 let mapStateToProps = (state: AppPropsType): mapStateType => ({
   profile: state.profilePage.profile,
-  status: state.profilePage.status
+  status: state.profilePage.status,
+  authorizedUserId: state.auth.userId,
+  isAuth:state.auth.isAuth
 })
 
 // let WithUrlDataContainerComponent = withRouter(AuthRedirectComponent);
